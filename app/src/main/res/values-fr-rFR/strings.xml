@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Appmobileprojet</string>
+    <string name="action_settings">Paramètre</string>
+    <string name="button_text">Clic</string>
+    <string name="hello">Bonjour</string>
+</resources>

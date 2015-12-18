@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="#ea0c0c"> <!-- android:clickable="true"
+    android:onClick="actionbouton">-->
+
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_name"
+        android:textStyle="bold" />
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_category"
+        android:textStyle="italic" />
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_description"
+        android:textStyle="italic" />
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_note"
+        android:textStyle="italic" />
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_buveur"
+        android:textStyle="italic" />
+    <TextView android:text="bier" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/rv_bier_description_pays"
+    android:textStyle="italic" />
+    <ImageView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_description_thumb"
+        android:textStyle="italic" />
+</LinearLayout>

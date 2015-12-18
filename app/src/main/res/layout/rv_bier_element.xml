@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="#ea0c0c"> <!-- android:clickable="true"
+    android:onClick="actionbouton">-->
+
+    <TextView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_element_name"
+        android:textStyle="bold" />
+    <ImageView android:text="bier" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_bier_element_image"
+        android:src="@drawable/ic_notif"
+        android:background="#f91111" />
+
+</LinearLayout>

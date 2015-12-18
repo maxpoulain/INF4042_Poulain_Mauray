@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppMobileProject</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_text">Click</string>
+    <string name="hello">Hello world</string>
+    <string name="title_activity_seconde">SecondeActivity</string>
+</resources>
