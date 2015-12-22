@@ -5,7 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.content.LocalBroadcastManager;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +46,7 @@ public class ThirdActivity extends Activity {
         id_position = extras.getInt("position")+1;
         IntentFilter intentFilter = new IntentFilter(BIER_UPDATE);
         LocalBroadcastManager.getInstance(this).registerReceiver(new BierUpdateTest(), intentFilter);
-        GetBierServices.startActionBier(this,id_position);
+        GetBierServices.startActionBier(this, id_position);
         rv3 = (RecyclerView)findViewById(R.id.rv_bier);
         rv3.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         JSONObject tab = getBiersFromOtherFile();
@@ -102,16 +104,17 @@ public class ThirdActivity extends Activity {
             public TextView note;
             public TextView buveur;
             public TextView pays;
-            //public ImageView thumb;
+            public ImageView image;
             public BierHolderTest(View v){
                 super(v);
+                image = (ImageView) itemView.findViewById(R.id.rv_bier_description_thumb);
                 name = (TextView) itemView.findViewById(R.id.rv_bier_description_name);
                 description = (TextView) itemView.findViewById((R.id.rv_bier_description_description));
                 category = (TextView) itemView.findViewById((R.id.rv_bier_description_category));
                 note = (TextView) itemView.findViewById((R.id.rv_bier_description_note));
                 buveur = (TextView) itemView.findViewById((R.id.rv_bier_description_buveur));
                 pays = (TextView) itemView.findViewById(R.id.rv_bier_description_pays);
-                //thumb = (ImageView) itemView.findViewById(R.id.rv_bier_description_thumb);
+
             }
         }
 
@@ -131,6 +134,12 @@ public class ThirdActivity extends Activity {
         @Override
         public void onBindViewHolder(BierHolderTest holder, int position) {
             try {
+
+
+                holder.image.setImageResource(R.drawable.ic_notif);
+                holder.image.setTag(bier.getInt("id"));
+                new DownloadImageTask().execute(bier.getInt("id"),holder.image);
+
                 String nmbier =  bier.getString("name");
                 String descript = bier.getString("description");
                 String category = bier.getString("category");
@@ -139,18 +148,17 @@ public class ThirdActivity extends Activity {
                 JSONObject pays = bier.getJSONObject("country");
                 String pays_name = pays.getString("name");
                 holder.name.setText(nmbier);
+                if(category.contains("null")){
+                    category = "Pas encore de catégorie";
+                }
                 holder.category.setText(category);
-                holder.description.setText(descript);
+                holder.description.setText("Description : " + descript);
                 if(note.contains("null")){
-                    note = "Pas de note";
+                    note = "Pas encore de note";
                 }
                 holder.note.setText(note);
-                holder.buveur.setText("Par "+buveur);
-                holder.pays.setText(pays_name);
-
-                /*for(int i = id_position;i<(id_position+10);i++){
-                    GetDescriptionBier.startAction(getApplicationContext(),i);
-                }*/
+                holder.buveur.setText("Testée par "+buveur);
+                holder.pays.setText("Pays d'origine : "+pays_name);
 
 
 
@@ -169,6 +177,49 @@ public class ThirdActivity extends Activity {
             this.bier = getBiersFromOtherFile();
             Log.d(TAG, "Length :"+bier.length());
             notifyDataSetChanged();
+        }
+
+        private class DownloadImageTask extends AsyncTask<Object, Integer,Void> {
+
+            int position = 0;
+            ImageView thumb=null;
+
+            @Override
+            protected Void doInBackground(Object... params) {
+                position =(int) params[0];
+                thumb = (ImageView) params[1];
+                try {
+
+                    if(((File)new File(getCacheDir().getAbsolutePath() + "/image" + position)).exists())
+                        return null;
+
+                    Log.d(TAG, "Task :"+position);
+                    JSONObject object = GetBierServices.handleBierActionThumb(getApplicationContext(),position);
+                    JSONObject obj = object.getJSONObject("image");
+                    JSONObject image = obj.getJSONObject("image");
+                    String uri =  image.getString("url");
+                    Log.d(TAG, "URI IMAGE:"+uri);
+                    URL urlfin = new URL("http://binouze.fabrigli.fr"+uri);
+                    GetBierServices.handleBierActionDownloadImage(getApplicationContext(), urlfin, position);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }catch (MalformedURLException e){
+                    e.printStackTrace();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            protected void onPostExecute(Void result){
+                Uri uri = Uri.parse(getCacheDir().getAbsolutePath()+"/image"+position);
+                Log.d(TAG, "URI: "+uri);
+                Log.d(TAG, "onPost: " + (new File(getCacheDir().getAbsolutePath() + "/image" + position).getAbsolutePath()));
+                if(((int)thumb.getTag()) == position ) {
+                    thumb.setImageURI(uri);
+                }
+            }
+
         }
 
     }

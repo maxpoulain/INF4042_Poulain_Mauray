@@ -158,7 +158,7 @@ public class GetBierServices extends IntentService {
                     return new JSONObject();
                 }
             }else{
-                Log.d(TAG, "code :"+connect.getResponseCode());
+                Log.d(TAG, "code :" + connect.getResponseCode());
             }
 
         }catch(MalformedURLException e){
@@ -179,6 +179,24 @@ public class GetBierServices extends IntentService {
             if(HttpURLConnection.HTTP_OK == connect.getResponseCode()){
                 copyInputStreamToFile(connect.getInputStream(), new File(context.getCacheDir(), "thumb" + id));
                 Log.d(TAG, "Download Thumb OK" + (new File(context.getCacheDir(), "thumb" + id)).getAbsolutePath());
+            }
+
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void handleBierActionDownloadImage(Context context, URL uri, int id) {
+        Log.d(TAG,"Download Image");
+        try {
+            HttpURLConnection connect = (HttpURLConnection) uri.openConnection();
+            connect.setRequestMethod("GET");
+            connect.connect();
+            if(HttpURLConnection.HTTP_OK == connect.getResponseCode()){
+                copyInputStreamToFile(connect.getInputStream(), new File(context.getCacheDir(), "image" + id));
+                Log.d(TAG, "Download Image OK" + (new File(context.getCacheDir(), "image" + id)).getAbsolutePath());
             }
 
         }catch(MalformedURLException e){
