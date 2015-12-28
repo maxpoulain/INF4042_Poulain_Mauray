@@ -28,6 +28,10 @@
             android:name=".ThirdActivity"
             android:label="ThirdActivity" >
         </activity>
+        <activity
+            android:name=".ThirdActivityBis"
+            android:label="ThirdActivityBis" >
+        </activity>
 
         <!--<service
             android:name=".GetBiersServices"
