@@ -30,17 +30,9 @@
         </activity>
         <activity
             android:name=".ThirdActivityBis"
-            android:label="ThirdActivityBis" >
+            android:label="ThirdActivityBis"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
-        <!--<service
-            android:name=".GetBiersServices"
-            android:exported="false" >
-        </service>
-        <service
-            android:name=".GetDescriptionBier"
-            android:exported="false" >
-        </service>-->
         <service
             android:name=".GetBierServices"
             android:exported="false" >
