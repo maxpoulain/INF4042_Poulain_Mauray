@@ -9,6 +9,6 @@
 - Notification --> OK
 - IntentServices --> OK 
 
-![Alt Text](https://github.com/maxpoulain/INF4042_Poulain_Mauray/master/images/vue1.png)
+![Alt Text](maxpoulain.github.com/INF4042_Poulain_Mauray/master/images/vue1.png)
 ![Image vue 2](https://github.com/maxpoulain/INF4042_Poulain_Mauray/tree/master/images/vue2.png?raw=true)
 ![Image vue 3](https://github.com/maxpoulain/INF4042_Poulain_Mauray/tree/master/images/vue3.png)
