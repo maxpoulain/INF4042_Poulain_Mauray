@@ -8,7 +8,3 @@
 - Thread --> OK
 - Notification --> OK
 - IntentServices --> OK 
-
-![ListForks](https://raw.github.com/maxpoulain/INF4042_Poulain_Mauray/tree/master/images/vue2.png)
-![Image vue 2](https://github.com/maxpoulain/INF4042_Poulain_Mauray/tree/master/images/vue2.png?raw=true)
-![Image vue 3](https://github.com/maxpoulain/INF4042_Poulain_Mauray/tree/master/images/vue3.png)
