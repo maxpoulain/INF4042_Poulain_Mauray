@@ -5,8 +5,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.esiea.mauray_poulain.appmobileproject.SecondeActivity">
+    tools:context="org.esiea.mauray_poulain.appmobileproject.SecondeActivity"
+    android:background="#5db596"
+    android:scrollIndicators="right">
 
-    <include layout="@layout/content_second" />
+    <include layout="@layout/content_second"/>
+
+
 
 </RelativeLayout>

@@ -1,9 +1,7 @@
 package org.esiea.mauray_poulain.appmobileproject;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,13 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Timer;
 
 import pl.droidsonroids.gif.GifDrawable;
 
@@ -32,20 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-
-        Log.d(TAG, "LANGUAGE : " + Locale.getDefault().getDisplayLanguage());
-
-        if(Locale.getDefault().getDisplayLanguage().contains("English")){
-            toolbar.setTitle("Beer Palace");
-            Log.d(TAG, "ENGLISH");
-        }else if(Locale.getDefault().getDisplayLanguage().contains("fra")) {
-            toolbar.setTitle("Palais de la Bière");
-        }
-
-        setSupportActionBar(toolbar);
-
         try {
 
 
@@ -57,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     gifFromResource.start();
                     synchronized(this){
-                        wait(3560);
+                        wait(3570);
                     }
                     gifFromResource.stop();
                     IntentFonction();
@@ -74,28 +58,30 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        ImageView fashionImg = (ImageView) findViewById(R.id.button);
+        // set a onclick listener for when the button gets clicked
+        fashionImg.setOnClickListener(new View.OnClickListener() {
+            // Start new list activity
+            public void onClick(View v) {
+                IntentFonction();
+                GetBierServices.startActionBiers(getApplicationContext());
+            }
+        });
 
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_settings) {
-            return true;
-        }
         if (id == R.id.menu_search) {
             Toast toast = Toast.makeText(this,"Cette fonctionnalité est disponible dans la version payante de l'application",Toast.LENGTH_SHORT);
             toast.show();
@@ -110,14 +96,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void actionbouton(View v){
-
-
-        IntentFonction();
-        GetBierServices.startActionBiers(this);
-        Log.d(TAG, "LANCEMENT OK");
-
-    }
 
     public void IntentFonction(){
 

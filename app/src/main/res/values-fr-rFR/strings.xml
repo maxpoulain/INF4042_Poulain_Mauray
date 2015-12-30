@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Le palais de la bière</string>
+    <string name="app_name">Partage tes bières</string>
     <string name="action_settings">Paramètre</string>
     <string name="button_text">Clic</string>
     <string name="hello">Bonjour</string>

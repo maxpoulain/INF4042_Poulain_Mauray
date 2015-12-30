@@ -24,6 +24,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -81,8 +83,8 @@ public class SecondeActivity extends Activity {
         );
         adapter = new BiersAdapter(getBiersFromFile());
         rv.setAdapter(adapter);
-        //header.attachTo(rv);
     }
+
 
     public void notification_test(){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.drawable.ic_notif).setContentTitle("Fin téléchargement").setContentText("Le fichier JSON a été téléchargé");
