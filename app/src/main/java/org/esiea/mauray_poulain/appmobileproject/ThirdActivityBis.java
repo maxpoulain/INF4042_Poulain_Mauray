@@ -63,7 +63,7 @@ public class ThirdActivityBis extends AppCompatActivity{
         try {
 
 
-            image.setImageResource(R.drawable.ic_notif);
+            image.setImageResource(R.mipmap.ic_launcher);
             image.setTag(tab.getInt("id"));
             new DownloadImageTask().execute(tab.getInt("id"), image);
 
