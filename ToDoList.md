@@ -1,4 +1,5 @@
 #ToDoList
-- Action Bar
-- Landscape
+- Action Bar --> OK
+- ~~Landscape~~
 - Traduction en Anglais
+- Ajout GIF --> OK
